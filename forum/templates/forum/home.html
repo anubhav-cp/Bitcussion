@@ -37,7 +37,7 @@
             <div class="row align-items-center">
               <div class="col-md-8 mb-3 mb-sm-0">
                 <h5>
-                  <a href="#" class="text-primary">{{post.title}}</a>
+                  <a href="{% url 'solution' post.id post.title.lower|cut:' ' %}" class="text-primary">{{post.title}}</a>
                 </h5>
                 <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{post.created|timesince}}</a> <span class="op-6">ago by</span> <a class="text-black" href="#">{{post.profile.username}}</a></p>
                 <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#{{post.tags.name}}</a></div>
@@ -55,6 +55,7 @@
         {% endfor %}
     </div>
 
+    
         <!-- Sidebar content -->
         <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0">
           <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;"></div><div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}" data-toggle="sticky" class="sticky" style="top: 85px;"><div class="sticky-inner">
