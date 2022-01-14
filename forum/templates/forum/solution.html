@@ -12,13 +12,13 @@
             <div class="row">
               <div class="col-md-8 mb-3 mb-sm-0">
                 <h2>
-                  This is the question
+                  {{posts.title}}
                 </h2>
-                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{post.created|timesince}}</a> <span class="op-6">ago by</span> <a class="text-black" href="#">{{post.profile.username}}</a></p>
+                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{posts.created|timesince}}</a> <span class="op-6">ago by</span> <a class="text-black" href="#">{{posts.profile.username}}</a></p>
               </div>
               <hr/>
 
-              <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, expedita inventore, dolorem esse aperiam praesentium illum magnam adipisci porro, sit architecto fugit provident fugiat modi? Ipsa est distinctio laborum placeat.</div>
+              <div>{{posts.description}}</div>
               <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#{{post.tags.name}}</a></div>
             </div>
           </div>
@@ -51,12 +51,7 @@
 
 
 
-        <!-- {% for post in posts %}
-        <div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum doloribus esse alias obcaecati blanditiis! Similique veritatis magnam laboriosam dolorum fugiat! Qui eaque dolore dolorum non quia dolores cum, corrupti ex.</p>
-        </div>
-        </div>
-        {% endfor %} -->
+        
 
 
 

@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.homePage, name='home'),
-    path('questons/<str:pk>/<str:ck>/', views.solutionPage, name='solution')
+    path('questons/<str:pk>/<str:ck>/', views.solutionPage, name='solution'),
+    path('/ask/questons/', views.createPost, name='createpost')
 ]

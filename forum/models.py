@@ -8,7 +8,7 @@ from userprofile.models import UserProfile
 
 
 class Post(models.Model):
-    profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=800)
     description = models.CharField(max_length=2000)
     upvote = models.IntegerField(default=0, null=True, blank=True)
