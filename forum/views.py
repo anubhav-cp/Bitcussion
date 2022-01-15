@@ -1,7 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Post, Solution
-from .forms import postForm
+from .forms import postForm, solutionForm
 
 
 
@@ -14,10 +14,21 @@ def homePage(request):
 
 
 def solutionPage(request, pk, ck):
+    
+
     posts = Post.objects.get(id=pk)
+    forms = solutionForm()
     solutions = Solution.objects.filter(post__id=pk)
-    print(solutions)
-    context = {'solutions': solutions, 'posts': posts}
+    
+    if request.method == 'POST':
+        forms = solutionForm(request.POST)
+        if forms.is_valid():
+            data = forms.save(commit=False)
+            data.post = posts
+            forms.save()
+
+
+    context = {'solutions': solutions, 'posts': posts, 'forms': forms}
     return render(request, 'forum/solution.html', context)
 
 
@@ -33,4 +44,10 @@ def createPost(request):
     context = {'form': form}
     return render(request, 'forum/createPost.html', context)
 
+
+# def createSoltuion(request):
+#     forms = solutionForm()
+
+#     context = {'forms': forms}
+#     return render(request, 'forum/solution.html', context)
     

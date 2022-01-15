@@ -46,6 +46,19 @@
           
     
         </div>
+          
+        <form method="POST">
+          {% csrf_token %}
+          
+          <p>{{forms}}</p>
+          
+          <input type="submit" value="Submit Answer">
+        </form>
+      </div>
+
+        <div>
+
+        
     
 
 
