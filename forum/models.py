@@ -1,3 +1,4 @@
+from statistics import mode
 from django.db import models
 import uuid
 from django.db.models.base import Model
@@ -14,9 +15,12 @@ class Post(models.Model):
     upvote = models.IntegerField(default=0, null=True, blank=True)
     downvote = models.IntegerField(default=0, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)  
+    isactive = models.BooleanField(default=True)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created']
     
 
     def __str__(self) -> str:

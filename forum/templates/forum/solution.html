@@ -19,7 +19,11 @@
               <hr/>
 
               <div>{{posts.description}}</div>
-              <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#{{post.tags.name}}</a></div>
+              <div>
+              {% for tag in posts.tags.all %}
+              <span class="text-sm op-5"> <a class="text-black mr-2" href="#">#{{tag.name}}</a></span>
+              {% endfor %}
+            </div>
             </div>
           </div>
 
@@ -44,19 +48,24 @@
         
           <!-- Solutions ends here -->
           
-    
+          <!-- Answer form starts -->
+          <div>
+          <form method="POST">
+            {% csrf_token %}
+            
+            <p>{{forms}}</p>
+            
+            <input type="submit" value="Submit Answer">
+          </form>
+        </div>
+
+        <!-- Answer ends here -->
+          
         </div>
           
-        <form method="POST">
-          {% csrf_token %}
-          
-          <p>{{forms}}</p>
-          
-          <input type="submit" value="Submit Answer">
-        </form>
-      </div>
+        
 
-        <div>
+       
 
         
     

@@ -8,8 +8,12 @@ from .forms import postForm, solutionForm
 def homePage(request):
     posts = Post.objects.all
 
+    active_posts = Post.objects.filter(isactive = True)[:5]
+
+    print(active_posts)
+
     print(posts)
-    context = {'posts': posts}
+    context = {'posts': posts, 'active_posts': active_posts}
     return render(request, 'forum/home.html', context)
 
 
@@ -19,6 +23,7 @@ def solutionPage(request, pk, ck):
     posts = Post.objects.get(id=pk)
     forms = solutionForm()
     solutions = Solution.objects.filter(post__id=pk)
+
     
     if request.method == 'POST':
         forms = solutionForm(request.POST)

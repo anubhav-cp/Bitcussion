@@ -12,4 +12,4 @@ class postForm(ModelForm):
 class solutionForm(ModelForm):
     class Meta:
         model = Solution
-        fields = ['description', 'upvote']
+        fields = ['description']
