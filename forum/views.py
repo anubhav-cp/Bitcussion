@@ -1,3 +1,4 @@
+from cgi import print_environ
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Post, Solution
@@ -23,6 +24,7 @@ def solutionPage(request, pk, ck):
     posts = Post.objects.get(id=pk)
     forms = solutionForm()
     solutions = Solution.objects.filter(post__id=pk)
+    print(solutions)
 
     
     if request.method == 'POST':
