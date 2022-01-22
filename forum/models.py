@@ -28,6 +28,7 @@ class Post(models.Model):
 
 
 class Solution(models.Model):
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     post = models.ForeignKey('POST', null=True, blank=True, on_delete=models.CASCADE)
     description = models.CharField(max_length=2000)
     upvote = models.IntegerField(default=0, null=True, blank=True)

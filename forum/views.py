@@ -1,8 +1,10 @@
 from cgi import print_environ
+import imp
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Post, Solution
 from .forms import postForm, solutionForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -32,6 +34,7 @@ def solutionPage(request, pk, ck):
         if forms.is_valid():
             data = forms.save(commit=False)
             data.post = posts
+            data.profile = request.user.userprofile
             forms.save()
 
 
@@ -39,13 +42,18 @@ def solutionPage(request, pk, ck):
     return render(request, 'forum/solution.html', context)
 
 
+@login_required(login_url='login')
 def createPost(request):
     form = postForm()
 
     if request.method == 'POST':
         form = postForm(request.POST)
         if form.is_valid():
+            user = form.save(commit=False)
+            user.profile = request.user.userprofile
             form.save()
+
+            return redirect('home')
 
 
     context = {'form': form}

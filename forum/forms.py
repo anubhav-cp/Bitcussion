@@ -6,7 +6,7 @@ from .models import Post, Solution
 class postForm(ModelForm):
     class Meta:
         model = Post
-        fields = ['profile', 'title', 'description', 'tags']
+        fields = ['title', 'description', 'tags']
 
 
 class solutionForm(ModelForm):
