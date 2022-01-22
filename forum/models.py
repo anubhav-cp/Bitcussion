@@ -11,7 +11,7 @@ from userprofile.models import UserProfile
 class Post(models.Model):
     profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=800)
-    description = models.CharField(max_length=2000)
+    description = models.TextField()
     upvote = models.IntegerField(default=0, null=True, blank=True)
     downvote = models.IntegerField(default=0, null=True, blank=True)
     tags = models.ManyToManyField('Tag', blank=True)  
@@ -30,7 +30,7 @@ class Post(models.Model):
 class Solution(models.Model):
     profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     post = models.ForeignKey('POST', null=True, blank=True, on_delete=models.CASCADE)
-    description = models.CharField(max_length=2000)
+    description = models.TextField()
     upvote = models.IntegerField(default=0, null=True, blank=True)
     downvote = models.IntegerField(default=0, null=True, blank=True)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)

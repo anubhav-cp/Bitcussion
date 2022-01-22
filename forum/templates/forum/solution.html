@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% include 'navbar.html' %}
 
 <div class="container">
     <div class="row">
@@ -30,6 +31,7 @@
 
           <!-- Solutions starts here -->
 
+          
           <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
             {% for sol in solutions %}
             <div class="row pt-3 pb-3">
@@ -45,6 +47,7 @@
             <hr/>
             {% endfor %}
           </div>
+          
         
           <!-- Solutions ends here -->
           
@@ -53,9 +56,18 @@
           <form method="POST">
             {% csrf_token %}
             
-            <p>{{forms}}</p>
+            {% for field in forms %}
+  
+                  <div class="form-outline mb-4">
+                    {{field}}
+                    <label class="form-label" for="form3Example1cg">Write you Solution</label>
+                  </div>
+
+            {% endfor %}
             
-            <input type="submit" value="Submit Answer">
+            <div class="d-flex justify-content-center">
+              <input type="submit" class="btn btn-primary btn-block btn-lg" value="Submit Now">
+            </div>
           </form>
         </div>
 
