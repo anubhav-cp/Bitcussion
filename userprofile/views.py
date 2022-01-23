@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from .forms import customUserCreationForm
+from .models import UserProfile
 
 
 def loginPage(request):
@@ -52,3 +53,11 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, 'userprofile/register.html', context)
+
+
+
+def accountPage(request, pk, ck):
+    user = UserProfile.objects.get(id=pk)
+
+    context = {'user': user}
+    return render(request, 'userprofile/account.html', context)
