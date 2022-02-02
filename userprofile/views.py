@@ -1,9 +1,9 @@
-from operator import methodcaller
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from .forms import customUserCreationForm
+from .forms import customUserCreationForm, updateUserProfileForm
 from .models import UserProfile
+
 
 
 def loginPage(request):
@@ -56,8 +56,24 @@ def registerPage(request):
 
 
 
-def accountPage(request, pk, ck):
-    user = UserProfile.objects.get(id=pk)
+def accountPage(request):
+    # user = UserProfile.objects.get(id=pk)
+    user = request.user.userprofile
 
     context = {'user': user}
     return render(request, 'userprofile/account.html', context)
+
+
+def updateAccountPage(request):
+    profile = request.user.userprofile
+    form = updateUserProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = updateUserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            user = form.save(commit=False)
+            form.save()
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'userprofile/update_account.html', context)
