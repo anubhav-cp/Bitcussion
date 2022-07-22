@@ -19,7 +19,7 @@
               </div>
               <hr/>
 
-              <div>{{posts.description}}</div>
+              <div><p>{{posts.description|linebreaks}}</p></div>
               <div>
               {% for tag in posts.tags.all %}
               <span class="text-sm op-5"> <a class="text-black mr-2" href="#">#{{tag.name}}</a></span>
